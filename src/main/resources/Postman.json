@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "JSON Encryption API",
+    "description": "Postman collection for the Spring Boot JSON Field Encryption API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/json/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "json", "health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Encryptable Fields",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/json/fields",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "json", "fields"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Encrypt JSON Fields",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"data\": {\n    \"name\": \"John Doe\",\n    \"ssn\": \"123-45-6789\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"creditCard\": \"4111-1111-1111-1111\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"phone\": \"555-0123\"\n    },\n    \"password\": \"secret123\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/json/encrypt",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "json", "encrypt"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Decrypt JSON Fields",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"data\": {\n    \"name\": \"John Doe\",\n    \"ssn\": \"PASTE_ENCRYPTED_SSN_HERE\",\n    \"email\": \"PASTE_ENCRYPTED_EMAIL_HERE\",\n    \"age\": 30,\n    \"creditCard\": \"PASTE_ENCRYPTED_CREDITCARD_HERE\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"phone\": \"PASTE_ENCRYPTED_PHONE_HERE\"\n    },\n    \"password\": \"PASTE_ENCRYPTED_PASSWORD_HERE\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/json/decrypt",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "json", "decrypt"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Example - User Registration Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"data\": {\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Smith\",\n    \"email\": \"alice.smith@bank.com\",\n    \"ssn\": \"111-22-3333\",\n    \"dateOfBirth\": \"1990-05-15\",\n    \"phone\": \"+1-555-0123\",\n    \"accountNumber\": \"ACC123456789\",\n    \"password\": \"SecurePass123!\",\n    \"securityQuestion\": \"What was your first pet's name?\",\n    \"securityAnswer\": \"Fluffy\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/json/encrypt",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "json", "encrypt"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Example - Financial Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"data\": {\n    \"transactionId\": \"TXN987654321\",\n    \"amount\": 1500.75,\n    \"currency\": \"USD\",\n    \"creditCard\": \"5555-6666-7777-8888\",\n    \"expiryDate\": \"12/25\",\n    \"cvv\": \"123\",\n    \"customerEmail\": \"customer@example.com\",\n    \"customerPhone\": \"555-9876\",\n    \"billingAddress\": {\n      \"street\": \"456 Oak Ave\",\n      \"city\": \"New York\",\n      \"zipCode\": \"10001\"\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/json/encrypt",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "json", "encrypt"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
